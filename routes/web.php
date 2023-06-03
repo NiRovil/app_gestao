@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\VariaveisController;
 
@@ -25,7 +26,7 @@ Route::get('/login', function(){return 'Login';})->name('site.login');
 //Agrupando rotas.
 Route::prefix('/app')->group(function() {
     Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
-    Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
+    Route::get('/fornecedores', [FornecedorController::class, 'fornecedor'])->name('app.fornecedores');
     Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
 });
 
