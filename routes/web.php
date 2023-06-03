@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\SobreNosController;
+use App\Http\Controllers\VariaveisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,6 @@ use App\Http\Controllers\SobreNosController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
 */
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
@@ -46,3 +41,6 @@ Route::get('/rota2', function(){
 Route::fallback(function(){
     echo 'A rota acessada não existe. <a href='.route('site.principal').'>Voltar.</a>';
 });
+
+//Encaminhando variáveis para as views
+Route::get('/variaveis', [VariaveisController::class, 'variaveis'])->name('site.variaveis');
