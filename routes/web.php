@@ -21,6 +21,7 @@ use App\Http\Controllers\VariaveisController;
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.principal');
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobreNos');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
+Route::post('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 //Agrupando rotas.
