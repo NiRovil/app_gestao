@@ -12,9 +12,6 @@
             <div class="contato-principal">
                 @component('site.layouts._components.form_contato', ['borda' => 'borda-preta'])
                     <p>Nosso tempo médio de resposta é de 48 horas!</p>
-                    @foreach ($fornecedores as $fornecedor)
-                        <p>{{$fornecedor['nome']}} / {{$fornecedor['UF']}} / {{$fornecedor['email']}}</p>
-                    @endforeach
                 @endcomponent
             </div>
         </div>  
