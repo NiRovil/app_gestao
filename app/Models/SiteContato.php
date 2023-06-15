@@ -9,5 +9,5 @@ class SiteContato extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'telefone', 'email', 'motivo_contato', 'mensagem'];
+    protected $fillable = ['nome', 'telefone', 'email', 'mensagem', 'motivos_contato_id'];
 }

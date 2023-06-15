@@ -21,7 +21,7 @@ class ContatoController extends Controller
         $request->validate([
             'nome' => 'required',
             'telefone' => 'required',
-            'email' => 'required',
+            'email' => 'email',
             'motivo_contato' => 'required',
             'mensagem' => 'required',
         ]);
@@ -30,8 +30,10 @@ class ContatoController extends Controller
         $contato->nome = $request->input('nome');
         $contato->telefone = $request->input('telefone');
         $contato->email = $request->input('email');
-        $contato->motivo_contato = $request->input('motivo_contato');
+        $contato->motivos_contato_id = $request->input('motivo_contato');
         $contato->mensagem = $request->input('mensagem');
         $contato->save();
+
+        return redirect()->route('site.principal');
     }
 }
