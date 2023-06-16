@@ -26,11 +26,10 @@ Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.contat
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 //Agrupando rotas.
-Route::prefix('/app')->group(function() {
-    //Caso haja necessidade de encadear middlewares, usar middleware('', '', ... , '')
-    Route::middleware('autenticacao')
-        ->get('/clientes', function(){return 'Clientes';})
-        ->name('app.clientes');
+//Caso haja necessidade de encadear middlewares, usar middleware('', '', ... , '')
+//Chamando middleware direto no grupo de rotas.
+Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
+    Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
     Route::get('/fornecedores', [FornecedorController::class, 'fornecedor'])->name('app.fornecedores');
     Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
 });
