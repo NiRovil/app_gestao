@@ -18,13 +18,21 @@ class ContatoController extends Controller
 
     public function salvar(Request $request){
 
-        $request->validate([
+        $regras = [
             'nome' => 'required',
             'telefone' => 'required',
-            'email' => 'email',
+            'email' => 'required|email',
             'motivo_contato' => 'required',
             'mensagem' => 'required',
-        ]);
+        ];
+
+        $mensagem = [
+            'email.email' => 'Digite um email válido!',
+            'motivo_contato.required' => 'Selecione o motivo de contato!',
+            'required' => 'O campo :attribute deve ser preenchido!'
+        ];
+
+        $request->validate($regras, $mensagem);
 
         $contato = new SiteContato();
         $contato->nome = $request->input('nome');
