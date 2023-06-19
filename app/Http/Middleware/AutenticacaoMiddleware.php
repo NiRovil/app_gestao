@@ -15,13 +15,12 @@ class AutenticacaoMiddleware
      */
     public function handle(Request $request, Closure $next, $metodo_autenticacao): Response
     {
-        echo $metodo_autenticacao.'<br>';
+        session_start();
 
-        //Manipulando a resposta de uma requisição.
-        $resposta = $next($request);
-        dd($resposta);
-        
-        return Response('Acesso negado!');
-        //return $next($request);
+        if(isset($_SESSION['nome']) && $_SESSION['email'] != ''){
+            return $next($request);
+        } else {
+            return redirect()->route('site.login', ['erro' => 2]);
+        }
     }
 }
