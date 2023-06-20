@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\VariaveisController;
 use App\Http\Middleware\LogAcessoMiddleware;
@@ -32,9 +35,11 @@ Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login'
 //Caso haja necessidade de encadear middlewares, usar middleware('', '', ... , '')
 //Chamando middleware direto no grupo de rotas.
 Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
-    Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
-    Route::get('/fornecedores', [FornecedorController::class, 'fornecedor'])->name('app.fornecedores');
-    Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+    Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
 });
 
 //Redirecionamento de rotas.
