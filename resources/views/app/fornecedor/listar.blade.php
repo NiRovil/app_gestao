@@ -12,7 +12,28 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                ... Lista ...
+                <table border="1" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>UF</th>
+                            <th>Email</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($result as $fornecedor)
+                            <tr>
+                                <td>{{$fornecedor['nome']}}</td>
+                                <td>{{$fornecedor['UF']}}</td>
+                                <td>{{$fornecedor['email']}}</td>
+                                <td>Excluir</td>
+                                <td>Editar</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
