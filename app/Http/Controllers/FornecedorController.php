@@ -10,6 +10,17 @@ class FornecedorController extends Controller
 
         $titulo = ['Fornecedor'];
 
-        return view('app.fornecedor', compact('titulo'));
+        return view('app.fornecedor.index', compact('titulo'));
+    }
+
+    public function listar(){
+
+        $titulo = ['Listar'];
+        return view('app.fornecedor.listar', compact('titulo'));
+    }
+
+    public function adicionar(){
+        $titulo = ['Adicionar'];
+        return view('app.fornecedor.adicionar', compact('titulo'));
     }
 }
