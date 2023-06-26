@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
+use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -32,7 +33,9 @@ class FornecedorController extends Controller
 
     public function adicionar(Request $request){
 
-        if($request->input('_token') != ''){
+        $msg = '';
+
+        if($request->input('_token') != '' && $request->input('id') == ''){
             $regras = [
                 'nome' => 'required',
                 'UF' => 'required|min:2|max:2',
@@ -59,10 +62,31 @@ class FornecedorController extends Controller
 
                 $fornecedor->save();
             */
+            $msg = 'Fornecedor cadastrado com sucesso!';
         }
 
+        if($request->input('_token') != '' && $request->input('id') != ''){
+            $fornecedor = Fornecedor::find($request->input('id'));
+            $update = $fornecedor->update($request->all());
+
+            if($update) {
+                $msg = 'Fornecedor editado com sucesso!';
+            } else {
+                $msg = 'Erro ao editar o fornecedor!';
+            }
+
+            $id = $request->input('id');
+
+            return redirect()->route('app.fornecedor.editar', compact('id', 'msg'));
+        }
 
         $titulo = ['Adicionar'];
-        return view('app.fornecedor.adicionar', compact('titulo'));
+        return view('app.fornecedor.adicionar', compact('titulo', 'msg'));
+    }
+
+    public function editar($id, $msg = '') {
+        $titulo = ['Editar'];
+        $fornecedor = Fornecedor::find($id);
+        return view('app.fornecedor.editar', compact('titulo', 'fornecedor', 'msg'));
     }
 }
