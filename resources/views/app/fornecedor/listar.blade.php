@@ -28,7 +28,7 @@
                                 <td>{{$fornecedor['nome']}}</td>
                                 <td>{{$fornecedor['UF']}}</td>
                                 <td>{{$fornecedor['email']}}</td>
-                                <td>Excluir</td>
+                                <td><a href={{route('app.fornecedor.excluir', $fornecedor['id'])}}>Excluir</a></td>
                                 <td><a href={{route('app.fornecedor.editar', $fornecedor['id'])}}>Editar</a></td>
                             </tr>
                         @endforeach
