@@ -34,6 +34,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$result->appends($req)->links()}}
             </div>
         </div>
     </div>

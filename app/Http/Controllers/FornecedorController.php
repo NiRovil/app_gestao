@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fornecedor;
-use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
@@ -25,10 +24,11 @@ class FornecedorController extends Controller
         $result = Fornecedor::where('nome', 'like', "%".$nome."%")
             ->where('UF', 'like', "%".$UF."%")
             ->where('email', 'like', "%".$email."%")
-            ->get();
+            ->paginate(2);
 
+        $req = $request->all();
         $titulo = ['Listar'];
-        return view('app.fornecedor.listar', compact('titulo', 'result'));
+        return view('app.fornecedor.listar', compact('titulo', 'result', 'req'));
     }
 
     public function adicionar(Request $request){
