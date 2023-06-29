@@ -4,10 +4,10 @@
 
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
-            <p>Listar Fornecedores</p>
+            <p>Produto</p>
         </div>
 
-        @component('app.fornecedor.layouts._components.menus')
+        @component('app.produto.layouts._components.menus')
         @endcomponent
 
         <div class="informacao-pagina">
@@ -16,25 +16,27 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>UF</th>
-                            <th>Email</th>
+                            <th>Descrição</th>
+                            <th>Peso</th>
+                            <th>Unidade ID</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($fornecedores as $fornecedor)
+                        @foreach ($produtos as $produto)
                             <tr>
-                                <td>{{$fornecedor['nome']}}</td>
-                                <td>{{$fornecedor['UF']}}</td>
-                                <td>{{$fornecedor['email']}}</td>
-                                <td><a href={{route('app.fornecedor.excluir', $fornecedor['id'])}}>Excluir</a></td>
-                                <td><a href={{route('app.fornecedor.editar', $fornecedor['id'])}}>Editar</a></td>
+                                <td>{{$produto['nome']}}</td>
+                                <td>{{$produto['descricao']}}</td>
+                                <td>{{$produto['peso']}}</td>
+                                <td>{{$produto['unidade_id']}}</td>
+                                <td><a href="">Excluir</a></td>
+                                <td><a href="">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{$fornecedores->appends($result)->links()}}
+                {{$produtos->appends($result)->links()}}
             </div>
         </div>
     </div>

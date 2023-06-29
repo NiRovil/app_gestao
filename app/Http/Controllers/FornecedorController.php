@@ -21,14 +21,14 @@ class FornecedorController extends Controller
         $email = $request->input('email');
         
 
-        $result = Fornecedor::where('nome', 'like', "%".$nome."%")
+        $fornecedores = Fornecedor::where('nome', 'like', "%".$nome."%")
             ->where('UF', 'like', "%".$UF."%")
             ->where('email', 'like', "%".$email."%")
             ->paginate(2);
 
-        $req = $request->all();
+        $result = $request->all();
         $titulo = ['Listar'];
-        return view('app.fornecedor.listar', compact('titulo', 'result', 'req'));
+        return view('app.fornecedor.listar', compact('titulo', 'fornecedores', 'result'));
     }
 
     public function adicionar(Request $request){
