@@ -7,6 +7,10 @@
             <p>Editar Detalhes Produto</p>
         </div>
 
+        <h4>Produto</h4>
+        <div>Nome: {{$produto_detalhe->produto['nome']}}</div>
+        <div>Descrição: {{$produto_detalhe->produto['descricao']}}</div>
+
         <div class="menu">
             <ul>
                 <li>
