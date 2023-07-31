@@ -33,9 +33,9 @@
                                 <td>{{$produto['descricao']}}</td>
                                 <td>{{$produto['peso']}}</td>
                                 <td>{{$produto['unidade_id']}}</td>
-                                <td>{{$produto['comprimento'] ?? 'Nenhum'}}</td>
-                                <td>{{$produto['altura'] ?? 'Nenhum'}}</td>
-                                <td>{{$produto['largura'] ?? 'Nenhum'}}</td>
+                                <td>{{$produto->produtoDetalhe['comprimento'] ?? 'Nenhum'}}</td>
+                                <td>{{$produto->produtoDetalhe['altura'] ?? 'Nenhum'}}</td>
+                                <td>{{$produto->produtoDetalhe['largura'] ?? 'Nenhum'}}</td>
                                 <td><a href="{{route('produto.show', ['produto' => $produto['id']])}}">Visualizar</a></td>
                                 <td>
                                     <form id="form_{{$produto['id']}}" action="{{route('produto.destroy', ['produto' => $produto['id']])}}" method="POST">
