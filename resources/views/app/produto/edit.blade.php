@@ -18,7 +18,7 @@
             </ul>
         </div>
 
-        @component('app.produto.layouts._components.formulario', ['produto' => $produto, 'unidades' => $unidades])
+        @component('app.produto.layouts._components.formulario', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores])
         @endcomponent
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use App\Models\ProdutoDetalhe;
 use App\Models\Unidade;
@@ -28,7 +29,8 @@ class ProdutoController extends Controller
     {
         $titulo = ['Adicionar'];
         $unidades = Unidade::all();
-        return view('app.produto.create', compact('titulo', 'unidades'));
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.create', compact('titulo', 'unidades', 'fornecedores'));
     }
 
     /**
@@ -69,7 +71,8 @@ class ProdutoController extends Controller
     {
         $titulo = ['Editar'];
         $unidades = Unidade::all();
-        return view('app.produto.edit', compact('titulo', 'produto', 'unidades'));
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.edit', compact('titulo', 'produto', 'unidades', 'fornecedores'));
     }
 
     /**
@@ -77,6 +80,21 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $regras = [
+            'nome' => 'required',
+            'descricao' => 'required',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido.',
+            'unidade_id.exists' => 'O campo :attribute deve ser selecionado.',
+            'fornecedor_id.exists' => 'O campo :attribute deve ser selecionado.'
+        ];
+
+        $request->validate($regras, $feedback);
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
